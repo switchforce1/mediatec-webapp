@@ -8,7 +8,7 @@
 
 namespace App\Entity\Media;
 
-use App\Entity\Middle\File;
+use App\Entity\Middle\MiddleFile;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"person" = "Person", "employee" = "Employee"})
  */
-class Media extends File
+class Media extends MiddleFile
 {
     /**
      * @ORM\Id
@@ -31,5 +31,43 @@ class Media extends File
      * @ORM\Column(type="string", name="reference", nullable=false, unique=true)
      */
     protected $reference;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Media
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReference(): string
+    {
+        return $this->reference;
+    }
+
+    /**
+     * @param string $reference
+     * @return Media
+     */
+    public function setReference(string $reference): Media
+    {
+        $this->reference = $reference;
+        return $this;
+    }
+
+
 
 }

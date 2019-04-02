@@ -11,11 +11,11 @@ namespace App\Entity\Middle;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class File
+ * Class MiddleFile
  * @package App\Entity\Middle
  * @ORM\MappedSuperclass()
  */
-class File
+class MiddleFile
 {
     /**
      * @var string
@@ -39,9 +39,9 @@ class File
 
     /**
      * @param string $originalFileName
-     * @return File
+     * @return MiddleFile
      */
-    public function setOriginalFileName(string $originalFileName): File
+    public function setOriginalFileName(string $originalFileName): MiddleFile
     {
         $this->originalFileName = $originalFileName;
         return $this;
@@ -57,9 +57,9 @@ class File
 
     /**
      * @param string $filePath
-     * @return File
+     * @return MiddleFile
      */
-    public function setFilePath(string $filePath): File
+    public function setFilePath(string $filePath): MiddleFile
     {
         $this->filePath = $filePath;
         return $this;

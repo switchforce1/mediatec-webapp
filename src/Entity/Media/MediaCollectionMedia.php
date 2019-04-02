@@ -8,6 +8,8 @@
 
 namespace App\Entity\Media;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="media_media_collection_media")
@@ -22,10 +24,89 @@ class MediaCollectionMedia
     protected $id;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", name="reference", nullable=false, unique=true)
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", name="creation_date", nullable=false)
      */
-    protected $reference;
+    protected $creationDate;
 
+    /**
+     * @var mediaCollection
+     */
+    protected $mediaCollection;
 
+    /**
+     * @var Media
+     */
+    protected $media;
+
+    /**
+     * MediaCollectionMedia constructor.
+     */
+    public function __construct()
+    {
+        $this->creationDate = new \DateTime("now");
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreationDate(): \DateTime
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @param \DateTime $creationDate
+     * @return MediaCollectionMedia
+     */
+    public function setCreationDate(\DateTime $creationDate): MediaCollectionMedia
+    {
+        $this->creationDate = $creationDate;
+        return $this;
+    }
+
+    /**
+     * @return mediaCollection
+     */
+    public function getMediaCollection(): mediaCollection
+    {
+        return $this->mediaCollection;
+    }
+
+    /**
+     * @param mediaCollection $mediaCollection
+     * @return MediaCollectionMedia
+     */
+    public function setMediaCollection(mediaCollection $mediaCollection): MediaCollectionMedia
+    {
+        $this->mediaCollection = $mediaCollection;
+        return $this;
+    }
+
+    /**
+     * @return Media
+     */
+    public function getMedia(): Media
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param Media $media
+     * @return MediaCollectionMedia
+     */
+    public function setMedia(Media $media): MediaCollectionMedia
+    {
+        $this->media = $media;
+        return $this;
+    }
 }
