@@ -20,7 +20,8 @@ class LocalFileSystem extends AbstractFileSystem implements FileSystemInterface
      * @param UploadedFile $uploadedFile
      * @param string $fileName
      * @param array $options
-     * @return mixed
+     * @return mixed|void
+     * @throws \App\Exception\FileSystem\BadFileSystemUploadOptionsException
      */
     public function saveUploadedFile(UploadedFile $uploadedFile, string $fileName, array $options = [])
     {
@@ -31,10 +32,11 @@ class LocalFileSystem extends AbstractFileSystem implements FileSystemInterface
      * @param string $base64String
      * @param string $fileName
      * @param array $options
-     * @return mixed
+     * @return mixed|void
+     * @throws \App\Exception\FileSystem\BadFileSystemBase64OptionsException
      */
     public function saveBase64File(string $base64String, string $fileName, array $options = [])
     {
-        // TODO: Implement saveBase64File() method.
+        $this->validateBase64Options($options);
     }
 }
