@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="media_image")
+ * @ORM\Table(name="media_video")
  */
 class Video extends Media
 {

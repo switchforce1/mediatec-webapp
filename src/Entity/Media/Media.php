@@ -13,9 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="media_media")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"person" = "Person", "employee" = "Employee"})
+ * @ORM\DiscriminatorMap({"media" = "Media", "image" = "Image", "video" = "Video"})
  */
 class Media extends MiddleFile
 {

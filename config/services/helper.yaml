@@ -1,0 +1,7 @@
+services:
+  app.artgris_conf.helper:
+      class: App\Helper\Generic\ArtgrisConfHelper
+      public : true
+      autowire: true
+      arguments:
+          $mediaDir : "%local_media_basedir%"

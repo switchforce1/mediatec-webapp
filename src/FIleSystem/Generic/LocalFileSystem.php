@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class LocalFileSystem extends AbstractFileSystem implements FileSystemInterface
 {
-
     /**
      * @param UploadedFile $uploadedFile
      * @param string $fileName
@@ -32,7 +31,9 @@ class LocalFileSystem extends AbstractFileSystem implements FileSystemInterface
      * @param string $base64String
      * @param string $fileName
      * @param array $options
+     *
      * @return mixed|void
+     *
      * @throws \App\Exception\FileSystem\BadFileSystemBase64OptionsException
      */
     public function saveBase64File(string $base64String, string $fileName, array $options = [])
