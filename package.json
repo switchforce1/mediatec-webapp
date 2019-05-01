@@ -1,0 +1,27 @@
+{
+  "name": "mediatec-webapp",
+  "version": "1.0.0",
+  "description": "My web Media manager",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/switchforce1/mediatec-webapp.git",
+  "author": "Switchforce1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/switchforce1/mediatec-webapp/issues"
+  },
+  "homepage": "https://github.com/switchforce1/mediatec-webapp#readme",
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.27.0",
+    "webpack-notifier": "^1.6.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.0"
+  }
+}
