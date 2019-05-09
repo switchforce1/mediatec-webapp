@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Image index{% endblock %}
+
+{% block body %}
+    <h1>Image index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reference</th>
+                <th>OriginalFileName</th>
+                <th>FilePath</th>
+                <th>Width</th>
+                <th>Height</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr>
+                <td>{{ image.id }}</td>
+                <td>{{ image.reference }}</td>
+                <td>{{ image.originalFileName }}</td>
+                <td>{{ image.filePath }}</td>
+                <td>{{ image.width }}</td>
+                <td>{{ image.height }}</td>
+                <td>
+                    <a href="{{ path('media_image_show', {'id': image.id}) }}">show</a>
+                    <a href="{{ path('media_image_edit', {'id': image.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('media_image_new') }}">Create new</a>
+{% endblock %}

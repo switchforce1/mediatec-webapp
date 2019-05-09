@@ -12,7 +12,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Security\UserRepository")
  * @ORM\Table(name="security_user")
  */
 class User extends BaseUser
@@ -30,5 +30,10 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }

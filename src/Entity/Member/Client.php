@@ -12,7 +12,7 @@ use App\Entity\Security\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Member\ClientRepository")
  * @ORM\Table(name="member_client")
  */
 class Client
@@ -59,6 +59,18 @@ class Client
     public function setUser(User $user): Client
     {
         $this->user = $user;
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
         return $this;
     }
 }

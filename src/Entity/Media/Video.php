@@ -11,7 +11,7 @@ namespace App\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Media\VideoRepository")
  * @ORM\Table(name="media_video")
  */
 class Video extends Media

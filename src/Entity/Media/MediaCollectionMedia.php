@@ -11,7 +11,7 @@ namespace App\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Media\MediaCollectionMediaRepository")
  * @ORM\Table(name="media_media_collection_media")
  */
 class MediaCollectionMedia
@@ -32,11 +32,15 @@ class MediaCollectionMedia
 
     /**
      * @var mediaCollection
+     * @ORM\ManyToOne(targetEntity="App\Entity\Media\MediaCollection", inversedBy="mediaCollectionMedias")
+     * @ORM\JoinColumn(name="media_collection_id", referencedColumnName="id")
      */
     protected $mediaCollection;
 
     /**
      * @var Media
+     * @ORM\ManyToOne(targetEntity="App\Entity\Media\Media")
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
      */
     protected $media;
 

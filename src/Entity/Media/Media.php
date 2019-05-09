@@ -8,11 +8,14 @@
 
 namespace App\Entity\Media;
 
+use App\Entity\Member\Client;
 use App\Entity\Middle\MiddleFile;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Media\MediaRepository")
  * @ORM\Table(name="media_media")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
@@ -32,6 +35,20 @@ class Media extends MiddleFile
      * @ORM\Column(type="string", name="reference", nullable=false, unique=true)
      */
     protected $reference;
+
+    /**
+     * @var Client
+     * @ORM\ManyToOne(targetEntity="App\Entity\Member\Client")
+     * @ORM\JoinColumn(name="client_id", nullable=false)
+     */
+    protected $client;
+
+    /**
+     * mediaCollection constructor.
+     */
+    public function __construct()
+    {
+    }
 
     /**
      * @return mixed
@@ -69,6 +86,34 @@ class Media extends MiddleFile
         return $this;
     }
 
+    /**
+     * @return Collection|MediaCollectionMedia[]
+     */
+    public function getMediaCollectionMedias(): Collection
+    {
+        return $this->mediaCollectionMedias;
+    }
 
+    public function addMediaCollectionMedia(MediaCollectionMedia $mediaCollectionMedia): self
+    {
+        if (!$this->mediaCollectionMedias->contains($mediaCollectionMedia)) {
+            $this->mediaCollectionMedias[] = $mediaCollectionMedia;
+            $mediaCollectionMedia->setMedia($this);
+        }
 
+        return $this;
+    }
+
+    public function removeMediaCollectionMedia(MediaCollectionMedia $mediaCollectionMedia): self
+    {
+        if ($this->mediaCollectionMedias->contains($mediaCollectionMedia)) {
+            $this->mediaCollectionMedias->removeElement($mediaCollectionMedia);
+            // set the owning side to null (unless already changed)
+            if ($mediaCollectionMedia->getMedia() === $this) {
+                $mediaCollectionMedia->setMedia(null);
+            }
+        }
+
+        return $this;
+    }
 }

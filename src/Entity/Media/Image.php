@@ -12,7 +12,7 @@ namespace App\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Media\ImageRepository")
  * @ORM\Table(name="media_image")
  */
 class Image extends Media
