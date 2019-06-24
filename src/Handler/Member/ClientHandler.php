@@ -25,17 +25,18 @@ class ClientHandler
     /**
      * @var EntityManagerInterface
      */
-    protected $entityManger;
+    protected $entityManager;
 
     /**
      * ClientHandler constructor.
+     *
      * @param UserHelper $userHelper
-     * @param EntityManagerInterface $entityManger
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(UserHelper $userHelper, EntityManagerInterface $entityManger)
+    public function __construct(UserHelper $userHelper, EntityManagerInterface $entityManager)
     {
         $this->userHelper = $userHelper;
-        $this->entityManger = $entityManger;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -45,7 +46,7 @@ class ClientHandler
     public function getClientOf(User $user)
     {
         /** @var ClientRepository $clientRepository */
-        $clientRepository = $this->entityManger->getRepository(Client::class);
+        $clientRepository = $this->entityManager->getRepository(Client::class);
         try{
             /** @var Client $client */
             $client = $clientRepository->findByUser($user);

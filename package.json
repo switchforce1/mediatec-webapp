@@ -18,10 +18,20 @@
   "homepage": "https://github.com/switchforce1/mediatec-webapp#readme",
   "devDependencies": {
     "@symfony/webpack-encore": "^0.27.0",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.0.1",
     "webpack-notifier": "^1.6.0"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1",
-    "jquery": "^3.4.0"
+    "@fortawesome/fontawesome-free": "^5.9.0",
+    "adminlte": "^2.4.1",
+    "autoprefixer": "^9.6.0",
+    "babel-loader": "^8.0.6",
+    "bootstrap": "3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "mini-css-extract-plugin": "^0.7.0",
+    "popper.js": "^1.15.0"
   }
 }

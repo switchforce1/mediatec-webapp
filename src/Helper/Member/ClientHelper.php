@@ -9,8 +9,11 @@
 namespace App\Helper\Member;
 
 use App\Entity\Member\Client;
+use App\Entity\Security\User;
+use App\Repository\Member\ClientRepository;
 use App\Util\Generic\StringUtil;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 
 /**
  * Class ClientHelper
@@ -48,18 +51,55 @@ class ClientHelper
     /**
      * @return string
      */
-    public function generateReference()
+    public function generateNewReference()
     {
         $client = null;
-        //on verifie bien que la refenence n'est pas utilisée
+        //on verifie bien que la reference n'est pas utilisée
         do{
             $referencePrefixe = $this->getReferencePrefixe();
             $uniqueString = StringUtil::generateRandomString(8);
             $reference = sprintf("%s_%s",$referencePrefixe, $uniqueString);
 
-            $client = $this->entityManager->getRepository(Client::class)->findOneBy(['reference'=>$reference]);
+            $client = $this->entityManager->getRepository(Client::class)->findOneBy([
+                'reference'=>$reference
+            ]);
         }while($client !== null);
 
         return $reference;
+    }
+
+    /**
+     * @param User $user
+     * @return Client|null
+     * @throws \Exception
+     */
+    protected function getClient(User $user)
+    {
+        /** @var ClientRepository $clientRepository */
+        $clientRepository = $this->entityManager->getRepository(Client::class);
+        try{
+            /** @var Client $client */
+            $client = $clientRepository->findByUser($user);
+        } catch (NonUniqueResultException $uniqueResultException){
+            return null;
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage());
+        }
+
+        return $client;
+    }
+
+    /**
+     * @param User $user
+     * @throws \Exception
+     */
+    public function generateClient(User $user)
+    {
+        if(!$user->getId()){
+            throw new \Exception('Unable to generate client for unsaved user');
+        }
+        /** @var ClientRepository $clientRepository */
+        $clientRepository = $this->entityManager->getRepository(Client::class);
+
     }
 }

@@ -1,0 +1,10 @@
+// customize some Bootstrap variables
+//$primary: darken(#428bca, 20%);
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~adminlte/dist/css/AdminLTE.css";
+@import "~adminlte/dist/css/skins/_all-skins.css";
+@import "~adminlte/dist/css/alt/AdminLTE-bootstrap-social.css";
+@import "~font-awesome/css/font-awesome.css";
+@import "./app.css";

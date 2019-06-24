@@ -20,6 +20,8 @@ Encore
     .addEntry('app', './assets/js/app.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
+    // .addStyleEntry('bootstrap', './assets/css/global.scss')
+     .addStyleEntry('globals', './assets/css/global.scss')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -46,9 +48,19 @@ Encore
         useBuiltIns: 'usage',
         corejs: 3
     })
+    // .configureCssLoader(() => {}, {
+    //     // minimize: Encore.isProduction(),
+    //     // sourceMap: 1,
+    //     // // when using @import, how many loaders *before* css-loader should
+    //     // // be applied to those imports? This defaults to 0. When postcss-loader
+    //     // // is used, we set it to 1, so that postcss-loader is applied
+    //     // // to @import resources.
+    //      importLoaders: 1
+    // })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
+    //.enablePostCssLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -65,4 +77,8 @@ Encore
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
-module.exports = Encore.getWebpackConfig();
+var config = Encore.getWebpackConfig();
+
+config.externals.jquery = 'jQuery';
+
+module.exports = config;
