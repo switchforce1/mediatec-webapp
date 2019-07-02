@@ -9,7 +9,21 @@
 namespace App\Controller\BackOffice;
 
 
-class DefaultController
-{
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class DefaultController
+ * @package App\Controller\BackOffice
+ */
+class DefaultController extends AbstractController
+{
+    /**
+     * @Route(path="/admin", name="back_office_index")
+     */
+    public function index()
+    {
+        $user = $this->getUser();
+        return $this->render('back_office/default/index.html.twig');
+    }
 }
